@@ -41,6 +41,51 @@ body {
   display: block;
 }
 
+/* inline centered logo (desktop) — hidden by default, shown on wider screens */
+.logo-inline {
+  display: none;
+  align-items: center;
+}
+.logo-inline img {
+  height: 36px; /* match .logo img on desktop */
+  display: block;
+}
+
+/* centered logo: swap to red image on hover, no red background */
+.menu .logo-inline,
+.menu .logo-inline:hover {
+  background: transparent !important; /* override .menu a:hover */
+}
+
+.logo-inline {
+  position: relative;
+  display: none;            /* shown in desktop media query */
+  align-items: center;
+}
+
+.logo-inline .logo-img {
+  height: 36px;
+  display: block;
+}
+
+/* show default by default */
+.logo-inline .logo-img.hover {
+  display: none;
+}
+
+/* on hover, show red image instead */
+.menu .logo-inline:hover .logo-img.default {
+  display: none;
+}
+.menu .logo-inline:hover .logo-img.hover {
+  display: block;
+}
+
+/* cancel any previous tint filters if present */
+.menu .logo-inline:hover img {
+  filter: none !important;
+}
+
 /* hide on scroll down */
 .navbar.hide {
   transform: translateY(-100%);
@@ -267,5 +312,73 @@ body {
 
   .socials {
     right: 60px; /* leave room for the menu-toggle */
+  }
+
+  /* ensure the centered desktop-only logo is hidden on mobile */
+  .logo-inline {
+    display: none !important;
+  }
+}
+
+/* Desktop: hide left absolute logo, show inline centered logo */
+@media (min-width: 701px) {
+  .logo { /* left logo stays for mobile only */
+    display: none;
+  }
+  .logo-inline {
+    display: flex;
+    position: relative;
+    width: 18px;   /* 20% smaller than current ~22.4px */
+    height: 18px;  /* 20% smaller than current ~22.4px */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-inline .logo-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 120ms ease;
+  }
+  .logo-inline .logo-img.hover { opacity: 0; }
+  .menu .logo-inline:hover .logo-img.default { opacity: 0; }
+  .menu .logo-inline:hover .logo-img.hover { opacity: 1; }
+
+  /* Smaller hover box on desktop (keeps layout the same) */
+  /* turn off full-height red background */
+  .menu a:hover,
+  .dropdown:hover .dropbtn {
+    background: transparent !important;
+  }
+
+  /* base for pseudo highlight */
+  .menu a,
+  .dropbtn {
+    position: relative;
+    z-index: 0;
+  }
+
+  /* small pill highlight (excludes the centered logo link) */
+  .menu > a:not(.logo-inline)::before,
+  .dropbtn::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 10px;      /* inset to make the box shorter */
+    bottom: 10px;   /* inset to make the box shorter */
+    border-radius: 4px;
+    background: transparent;
+    z-index: -1;
+    transition: background 160ms ease;
+    pointer-events: none;
+  }
+
+  .menu > a:not(.logo-inline):hover::before,
+  .dropdown:hover .dropbtn::before {
+    background: #e60000; /* match your red */
   }
 }
