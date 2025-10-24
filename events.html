@@ -154,7 +154,7 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const dotsContainer = document.getElementById('dotsContainer');
-    const eventContainer = document.querySelector('.event-container');
+    const eventContainer = document.querySelector('#event1-title + .event-container');
     
     const images = [
       'Media/Events/HOK/kfemain.jpg',
@@ -204,12 +204,12 @@
     // Touch events for swipe
     eventContainer.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
-    });
+    }, { passive: true });
     
     eventContainer.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
       handleSwipe();
-    });
+    }, { passive: true });
     
     function handleSwipe() {
       const swipeThreshold = 50; // minimum distance for swipe
