@@ -290,7 +290,7 @@ body {
     width: 250px;
     padding-top: 10px;
     transition: right 0.3s ease;
-    z-index: 999; /* below socials (1003) and menu-toggle (1001) */
+    z-index: 1005; /* above page content */
     box-shadow: -6px 0 18px rgba(0,0,0,0.6);
     overflow-y: auto; /* allow scrolling if menu is long */
   }
@@ -314,33 +314,11 @@ body {
 
   .socials {
     right: 60px; /* leave room for the menu-toggle */
-    z-index: 1003; /* ensure it stays above the menu */
   }
 
   /* ensure the centered desktop-only logo is hidden on mobile */
   .logo-inline {
     display: none !important;
-  }
-
-  /* Dropdown content in mobile menu */
-  .dropdown-content {
-    position: static;
-    display: none;
-    background-color: rgba(85, 85, 85, 0.5);
-    min-width: auto;
-    width: 100%;
-    box-shadow: none;
-    border-radius: 0;
-    margin-top: 5px;
-  }
-
-  .dropdown-content a {
-    padding: 10px 20px 10px 40px;
-  }
-
-  /* Show dropdown when parent is hovered/clicked */
-  .dropdown:hover .dropdown-content {
-    display: block;
   }
 }
 
@@ -558,4 +536,44 @@ html {
   background-color: #ff0000;
   color: #fff;
   transform: scale(1.05);
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  /* reduce navbar height slightly for more space */
+  .navbar {
+    height: 48px;
+    padding: 6px 10px;
+  }
+
+  body {
+    padding-top: 48px; /* match reduced navbar height */
+  }
+
+  /* move social icons slightly left to avoid overlap with menu toggle */
+  .socials {
+    right: 70px; /* more space for the hamburger menu */
+  }
+
+  /* adjust the mobile menu to start lower and take less height */
+  .menu {
+    top: 48px; /* align below reduced navbar */
+    height: calc(100vh - 48px);
+  }
+
+  /* tighten padding so it fits comfortably */
+  .menu a,
+  .dropbtn {
+    padding: 10px 16px;
+  }
+
+  /* make icons smaller so they don’t clash visually */
+  .social-icon {
+    font-size: 20px;
+    padding: 4px;
+  }
+
+  /* optionally: scale down logo slightly for balance */
+  .logo img {
+    height: 26px;
+  }
 }
