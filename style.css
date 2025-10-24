@@ -261,8 +261,16 @@ body {
   padding: 16px;
   text-align: center;
   transform: rotateY(-180deg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  pointer-events: none; /* let clicks go to parent */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  pointer-events: auto; /* allow clicking links on the back */
+}
+
+/* socials row on the back */
+.resident-socials {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
 }
 
 /* grayscale feel when flipped/back side */
@@ -286,10 +294,28 @@ body {
 }
 
 .resident .resident-overlay .overlay-content p {
-  margin: 0;
+  margin: 0 0 16px 0;
   font-size: 14px;
   line-height: 1.5;
   color: #ddd;
+}
+
+.resident-social-icon {
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s ease, transform 0.12s ease;
+  padding: 6px;
+  border-radius: 4px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  pointer-events: auto; /* re-enable clicks for the link */
+}
+
+.resident-social-icon:hover {
+  color: red;
+  transform: scale(1.1);
 }
 
 .resident {
