@@ -13,7 +13,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-39PWVR4N25');
 </script>
 </head>
@@ -21,7 +20,8 @@
 
   <div class="navbar">
     <a class="logo" href="Main.html">
-      <img src="Media\Logo\logo.png" alt="Logo">
+      <!-- fixed slashes -->
+      <img src="Media/Logo/logo.png" alt="Logo">
     </a>
 
     <!-- Social icons container (Instagram + Facebook + TikTok) -->
@@ -74,7 +74,6 @@
 
       <a href="gallery.html">GALLERY</a>
       <a href="https://anubisrecords1.bandcamp.com/merch" target="_blank" rel="noopener noreferrer">MERCH</a>
-      
 
       <div class="dropdown">
         <button class="dropbtn">CONTACTS ▾</button>
@@ -106,6 +105,7 @@
       overlay.classList.remove('active');
       overlay.setAttribute('aria-hidden', 'true');
       toggle.textContent = '☰';
+      collapseAllSubmenus();
     }
 
     toggle.addEventListener('click', () => {
@@ -117,9 +117,67 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
     });
+
+    // Mobile dropdown toggle (accordion with slide animation)
+    const isMobileMenu = () =>
+      window.matchMedia('(max-width: 700px), (max-height: 500px) and (max-width: 1000px)').matches;
+
+    function collapseAllSubmenus() {
+      document.querySelectorAll('.menu .dropdown').forEach(dd => {
+        dd.classList.remove('open');
+        const panel = dd.querySelector('.dropdown-content');
+        const btn = dd.querySelector('.dropbtn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (panel) {
+          panel.style.maxHeight = '0px';
+          panel.style.opacity = '0';
+        }
+      });
+    }
+
+    // prepare dropdowns
+    document.querySelectorAll('.dropdown .dropbtn').forEach(btn => {
+      const dd = btn.closest('.dropdown');
+      const panel = dd.querySelector('.dropdown-content');
+      btn.setAttribute('aria-expanded', 'false');
+
+      btn.addEventListener('click', (e) => {
+        if (!isMobileMenu()) return; // desktop uses hover
+        e.preventDefault();
+        e.stopPropagation();
+
+        const willOpen = !dd.classList.contains('open');
+        dd.classList.toggle('open', willOpen);
+        btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+
+        if (panel) {
+          if (willOpen) {
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            panel.style.opacity = '1';
+          } else {
+            panel.style.maxHeight = '0px';
+            panel.style.opacity = '0';
+          }
+        }
+      });
+    });
+
+    // clear inline styles when switching to desktop
+    function syncDropdownMode() {
+      if (!isMobileMenu()) {
+        document.querySelectorAll('.menu .dropdown-content').forEach(panel => {
+          panel.style.maxHeight = '';
+          panel.style.opacity = '';
+        });
+        document.querySelectorAll('.menu .dropdown').forEach(dd => dd.classList.remove('open'));
+        document.querySelectorAll('.dropdown .dropbtn').forEach(b => b.setAttribute('aria-expanded','false'));
+      }
+    }
+    window.addEventListener('resize', syncDropdownMode);
+    syncDropdownMode();
   </script>
 
-  <!-- Single main section (removed duplicate mains and use relative image paths) -->
+  <!-- Single main section -->
   <main class="content">
     <header class="page-header">
       <h1>Anubis Residents</h1>

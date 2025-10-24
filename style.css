@@ -320,6 +320,38 @@ body {
   .logo-inline {
     display: none !important;
   }
+
+  /* Mobile dropdown behaves like a sliding accordion */
+  .menu .dropdown .dropbtn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu .dropdown-content {
+    position: static;
+    left: auto;
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+
+    /* slide animation */
+    display: block;                 /* keep in flow to measure height */
+    max-height: 0;                  /* collapsed state */
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 260ms ease, opacity 200ms ease;
+
+    padding: 0 0 0 16px;            /* indent submenu items */
+    margin: 0 0 8px 0;
+  }
+
+  .menu .dropdown.open .dropdown-content {
+    /* height set by JS; just fade in */
+    opacity: 1;
+  }
 }
 
 /* Desktop: hide left absolute logo, show inline centered logo */
