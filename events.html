@@ -136,6 +136,7 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const dotsContainer = document.getElementById('dotsContainer');
+    const eventContainer = document.querySelector('.event-container');
     
     const images = [
       'Media/Events/HOK/kfemain.jpg',
@@ -145,6 +146,8 @@
     ];
     
     let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
     
     // Create dots
     images.forEach((_, index) => {
@@ -167,15 +170,40 @@
       });
     }
     
-    prevBtn.addEventListener('click', () => {
+    function goToPrevious() {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       updateImage();
-    });
+    }
     
-    nextBtn.addEventListener('click', () => {
+    function goToNext() {
       currentIndex = (currentIndex + 1) % images.length;
       updateImage();
+    }
+    
+    prevBtn.addEventListener('click', goToPrevious);
+    nextBtn.addEventListener('click', goToNext);
+    
+    // Touch events for swipe
+    eventContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
     });
+    
+    eventContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50; // minimum distance for swipe
+      if (touchEndX < touchStartX - swipeThreshold) {
+        // Swipe left - go to next
+        goToNext();
+      }
+      if (touchEndX > touchStartX + swipeThreshold) {
+        // Swipe right - go to previous
+        goToPrevious();
+      }
+    }
     
     // Initialize first dot as active
     updateImage();

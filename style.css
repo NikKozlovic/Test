@@ -451,6 +451,13 @@ body {
   }
 }
 
+/* Hide arrows on mobile/touch devices */
+@media (max-width: 768px) {
+  .nav-arrow {
+    display: none;
+  }
+}
+
 /* Dots indicator */
 .dots-container {
   display: flex;
