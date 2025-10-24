@@ -488,3 +488,8 @@ body {
 #event2-title {
   margin-top: 120px; /* adjust as needed */
 }
+
+/* Space between EVENTS title and first event title */
+#event1-title {
+  margin-top: 120px; /* adjust as needed */
+}
