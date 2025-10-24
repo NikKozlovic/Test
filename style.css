@@ -290,7 +290,7 @@ body {
     width: 250px;
     padding-top: 10px;
     transition: right 0.3s ease;
-    z-index: 1005; /* above page content */
+    z-index: 999; /* below socials (1003) and menu-toggle (1001) */
     box-shadow: -6px 0 18px rgba(0,0,0,0.6);
     overflow-y: auto; /* allow scrolling if menu is long */
   }
@@ -314,11 +314,33 @@ body {
 
   .socials {
     right: 60px; /* leave room for the menu-toggle */
+    z-index: 1003; /* ensure it stays above the menu */
   }
 
   /* ensure the centered desktop-only logo is hidden on mobile */
   .logo-inline {
     display: none !important;
+  }
+
+  /* Dropdown content in mobile menu */
+  .dropdown-content {
+    position: static;
+    display: none;
+    background-color: rgba(85, 85, 85, 0.5);
+    min-width: auto;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    margin-top: 5px;
+  }
+
+  .dropdown-content a {
+    padding: 10px 20px 10px 40px;
+  }
+
+  /* Show dropdown when parent is hovered/clicked */
+  .dropdown:hover .dropdown-content {
+    display: block;
   }
 }
 
@@ -516,4 +538,24 @@ html {
   font-size: 12px;
   color: #888;
   margin: 0;
+}
+
+.ticket-btn {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: #d4af37;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ticket-btn:hover {
+  background-color: #ff0000;
+  color: #fff;
+  transform: scale(1.05);
 }
