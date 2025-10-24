@@ -493,3 +493,7 @@ body {
 #event1-title {
   margin-top: 120px; /* adjust as needed */
 }
+
+html {
+  overflow-y: scroll;
+}
