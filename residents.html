@@ -216,5 +216,53 @@
     <p>Copyright 2025 © All rights Reserved. Design by Anubis Underground</p>
   </footer>
 
+  <script>
+    // Flip-on-click setup
+    document.addEventListener('DOMContentLoaded', () => {
+      // Bio texts for each resident
+      const bios = {
+        'Kosowsky': 'Kosowsky is a DJ, founder, and owner of Anubis Underground, based in Ljubljana, Slovenia. Known for his diverse and powerful sets, he blends all shades of hard techno into a relentless mix that defines the core energy of the label.',
+        // Add more residents here:
+        // 'Bahun': 'Your bio text here...',
+        // 'Kayn': 'Your bio text here...',
+      };
+
+      document.querySelectorAll('.residents-grid .resident').forEach(card => {
+        const nameEl = card.querySelector('.resident-name');
+        const name = (nameEl?.textContent || 'Resident').trim();
+
+        // Use bio if available, otherwise just show name
+        const bioText = bios[name] || name;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'resident-overlay';
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.innerHTML = '<div class="overlay-content"><h3>' + name + '</h3><p>' + bioText + '</p></div>';
+
+        const img = card.querySelector('img');
+        if (!img) return;
+        card.insertBefore(overlay, img.nextSibling);
+
+        // Make card interactive
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', name + ' details');
+        card.setAttribute('aria-pressed', 'false');
+
+        const toggle = () => {
+          const flipped = card.classList.toggle('flipped');
+          card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+        };
+
+        card.addEventListener('click', toggle);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

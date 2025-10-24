@@ -227,6 +227,63 @@ body {
 }
 
 .resident {
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.resident img,
+.resident .resident-overlay {
+  transition: transform 600ms ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 6px;
+}
+
+/* back face */
+.resident .resident-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  transform: rotateY(-180deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  pointer-events: none; /* let clicks go to parent */
+}
+
+/* grayscale feel when flipped/back side */
+.resident .resident-overlay,
+.resident.flipped img {
+  filter: grayscale(100%);
+}
+
+/* flip state */
+.resident.flipped img {
+  transform: rotateY(180deg);
+}
+.resident.flipped .resident-overlay {
+  transform: rotateY(0deg);
+}
+
+.resident .resident-overlay .overlay-content h3 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.resident .resident-overlay .overlay-content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.resident {
   background: transparent;
   color: #fff;
   text-align: center;
