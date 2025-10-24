@@ -76,4 +76,86 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Close dropdown when clicking outside on mobile
+  document.addEventListener('click', function(event) {
+    // Only apply this behavior on mobile (when menu toggle is visible)
+    const menuToggle = document.querySelector('.menu-toggle');
+    const isMenuToggleVisible = window.getComputedStyle(menuToggle).display !== 'none';
+    
+    if (!isMenuToggleVisible) return; // Skip on desktop
+    
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+      const dropdownContent = dropdown.querySelector('.dropdown-content');
+      const dropdownBtn = dropdown.querySelector('.dropbtn');
+      
+      // Check if click is outside the dropdown
+      if (!dropdown.contains(event.target)) {
+        // Close the dropdown by removing inline display style
+        if (dropdownContent.style.display === 'block') {
+          dropdownContent.style.display = 'none';
+        }
+      }
+    });
+  });
+
+  // Toggle dropdown on mobile when clicking the button
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdownBtns = document.querySelectorAll('.dropbtn');
+    
+    dropdownBtns.forEach(btn => {
+      btn.addEventListener('click', function(event) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const isMenuToggleVisible = window.getComputedStyle(menuToggle).display !== 'none';
+        
+        if (!isMenuToggleVisible) return; // Skip on desktop (use CSS hover)
+        
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const dropdown = this.parentElement;
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
+        
+        // Toggle this dropdown
+        if (dropdownContent.style.display === 'block') {
+          dropdownContent.style.display = 'none';
+        } else {
+          // Close all other dropdowns first
+          document.querySelectorAll('.dropdown-content').forEach(dc => {
+            dc.style.display = 'none';
+          });
+          // Open this one
+          dropdownContent.style.display = 'block';
+        }
+      });
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.menu');
+  
+  // Toggle menu
+  menuToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    menu.classList.toggle('active');
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    // Check if menu is open and click is outside menu and toggle button
+    if (menu.classList.contains('active') && 
+        !menu.contains(e.target) && 
+        !menuToggle.contains(e.target)) {
+      menu.classList.remove('active');
+    }
+  });
+  
+  // Prevent clicks inside menu from closing it
+  menu.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
 });

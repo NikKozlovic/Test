@@ -265,8 +265,8 @@ body {
   }
 }
 
-/* Responsive layout */
-@media (max-width: 700px) {
+/* Responsive layout - trigger on narrow width OR short height (landscape phones) */
+@media (max-width: 700px), (max-height: 500px) and (max-width: 1000px) {
   /* move toggle to right */
   .navbar {
     justify-content: flex-end; /* changed from flex-start */
@@ -323,7 +323,7 @@ body {
 }
 
 /* Desktop: hide left absolute logo, show inline centered logo */
-@media (min-width: 701px) {
+@media (min-width: 701px) and (min-height: 501px) {
   .logo { /* left logo stays for mobile only */
     display: none;
   }
@@ -536,44 +536,4 @@ html {
   background-color: #ff0000;
   color: #fff;
   transform: scale(1.05);
-}
-
-@media (max-width: 900px) and (orientation: landscape) {
-  /* reduce navbar height slightly for more space */
-  .navbar {
-    height: 48px;
-    padding: 6px 10px;
-  }
-
-  body {
-    padding-top: 48px; /* match reduced navbar height */
-  }
-
-  /* move social icons slightly left to avoid overlap with menu toggle */
-  .socials {
-    right: 70px; /* more space for the hamburger menu */
-  }
-
-  /* adjust the mobile menu to start lower and take less height */
-  .menu {
-    top: 48px; /* align below reduced navbar */
-    height: calc(100vh - 48px);
-  }
-
-  /* tighten padding so it fits comfortably */
-  .menu a,
-  .dropbtn {
-    padding: 10px 16px;
-  }
-
-  /* make icons smaller so they don’t clash visually */
-  .social-icon {
-    font-size: 20px;
-    padding: 4px;
-  }
-
-  /* optionally: scale down logo slightly for balance */
-  .logo img {
-    height: 26px;
-  }
 }
