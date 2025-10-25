@@ -353,7 +353,7 @@ body {
     grid-template-columns: 1fr;
   }
   .resident img {
-    height: 220px;
+    height: 300px;
   }
 }
 
