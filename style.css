@@ -809,13 +809,19 @@ html {
   user-select: none;
 }
 
-.rule-header:hover {
-  color: #ff0000;
-}
-
 .rule-description {
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
+}
+
+.rule-description a {
+  color: #ff0000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.rule-description a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 .rule-description p {
