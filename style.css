@@ -261,7 +261,7 @@ body {
   padding: 16px;
   text-align: center;
   transform: rotateY(-180deg);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   pointer-events: auto; /* allow clicking links on the back */
 }
 
@@ -291,6 +291,7 @@ body {
   margin: 0 0 12px 0;
   font-size: 20px;
   letter-spacing: 1px;
+  color: #ff0000; /* red name in bio */
 }
 
 .resident .resident-overlay .overlay-content p {
@@ -722,5 +723,13 @@ html {
 }
 
 .bio-dot.active {
-  background: rgba(255, 0, 0, 0.8);
+  background: #ff0000; /* solid red */
+}
+
+/* Keep overlay colors; only grayscale the image when flipped */
+.resident .resident-overlay {
+  filter: none !important; /* override earlier grayscale */
+}
+.resident.flipped img {
+  filter: grayscale(100%);
 }
