@@ -841,3 +841,14 @@ html {
     padding: 20px 15px;
   }
 }
+
+/* Compact spacing for FAQ page */
+.rules-container--compact {
+  margin-top: 20px; /* was 100px via .rules-container */
+}
+
+@media (max-width: 700px) {
+  .rules-container--compact {
+    margin-top: 24px;
+  }
+}
