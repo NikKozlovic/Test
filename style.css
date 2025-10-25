@@ -661,3 +661,66 @@ html {
   color: #fff;
   transform: scale(1.05);
 }
+
+.bio-slider {
+  position: relative;
+  width: 100%;
+  min-height: 180px; /* increase to accommodate longest bio */
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.bio-slides {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 140px;
+  touch-action: pan-y; /* allow vertical scroll; we handle horizontal swipes */
+  user-select: none;
+}
+
+.bio-slide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.bio-slide.active {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+}
+
+.bio-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto; /* push to bottom */
+  padding-top: 1rem;
+  flex-shrink: 0; /* prevent shrinking */
+}
+
+.bio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.bio-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(1.2);
+}
+
+.bio-dot.active {
+  background: rgba(255, 0, 0, 0.8);
+}

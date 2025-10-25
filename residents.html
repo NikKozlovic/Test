@@ -212,12 +212,36 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const bios = {
-        Kosowsky: 'Kosowsky is a DJ, producer, and the founder of Anubis Underground, based in Ljubljana, Slovenia. Known for his diverse and powerful sets, he blends all shades of hard techno into a relentless mix that defines the core energy of the label.',
-        Kunja: 'Kunja is a DJ and producer based in Mengeš, Slovenia. His sets fuse the raw drive of schranz with the intensity of hard techno, delivering high-energy performances that capture the relentless underground spirit of Anubis Underground.',
-        Bahun: 'Bahun is a DJ from Tržič, Slovenia, delivering fast and unforgiving schranz infused with a taste of every genre. His rare spark of vitality turns every set into a storm of rhythm and raw euphoria, where intensity meets groove and the crowd moves as one.',
-        Kayn: 'Kayn is a DJ from Postojna, Slovenia, known for delivering intense hard industrial techno sets that shake the dancefloor with raw power and precision. His sound captures the darker essence of hard techno, where relentless rhythm meets pure energy.',
-        Nazh: 'Nazh is a DJ from Ljubljana, Slovenia, bringing unstoppable energy to every set with his powerful schranz sound. Known for fast-paced, hard-hitting rhythms, he drives the crowd into motion with precision and intensity, creating an atmosphere where raw energy and pure rave spirit collide on the dancefloor.',
-        Vanch: 'Vanch is a DJ and producer from Borovnica, Slovenia, known for his dark and unrelenting fusion of bochka and pure industrial. His sets dive deep into the mechanical void, merging distortion and rhythm into a relentless force that consumes the dancefloor in raw intensity.',
+        Kosowsky: [
+          'Kosowsky is a DJ, producer, and the founder of Anubis Underground, based in Ljubljana, Slovenia. Known for his diverse and powerful sets, he blends all shades of hard techno into a relentless mix that defines the core energy of the label.',
+          'With years of experience in the underground scene, Kosowsky has shaped the sound and vision of Anubis Underground since its inception.',
+          'His production style merges industrial textures with driving rhythms, creating tracks that resonate deeply with the techno community.'
+        ],
+        Kunja: [
+          'Kunja is a DJ and producer based in Mengeš, Slovenia. His sets fuse the raw drive of schranz with the intensity of hard techno, delivering high-energy performances that capture the relentless underground spirit of Anubis Underground.',
+          'Known for his technical precision and ability to read the crowd, Kunja creates unforgettable experiences on the dancefloor.',
+          'His dedication to the craft has made him a key figure in Slovenia\'s hard techno movement.'
+        ],
+        Bahun: [
+          'Bahun is a DJ from Tržič, Slovenia, delivering fast and unforgiving schranz infused with a taste of every genre. His rare spark of vitality turns every set into a storm of rhythm and raw euphoria, where intensity meets groove and the crowd moves as one.',
+          'Bahun\'s eclectic approach brings unexpected energy to every performance, making each set a unique journey.',
+          'His passion for pushing boundaries has earned him recognition in the underground techno community.'
+        ],
+        Kayn: [
+          'Kayn is a DJ from Postojna, Slovenia, known for delivering intense hard industrial techno sets that shake the dancefloor with raw power and precision. His sound captures the darker essence of hard techno, where relentless rhythm meets pure energy.',
+          'Drawing inspiration from the industrial underground, Kayn crafts sets that are both punishing and hypnotic.',
+          'His commitment to the darker side of techno makes him a standout in the Anubis roster.'
+        ],
+        Nazh: [
+          'Nazh is a DJ from Ljubljana, Slovenia, bringing unstoppable energy to every set with his powerful schranz sound. Known for fast-paced, hard-hitting rhythms, he drives the crowd into motion with precision and intensity, creating an atmosphere where raw energy and pure rave spirit collide on the dancefloor.',
+          'Nazh\'s high-octane performances are characterized by seamless mixing and relentless energy that keeps crowds moving.',
+          'His passion for schranz and hard techno has made him a resident favorite at Anubis events.'
+        ],
+        Vanch: [
+          'Vanch is a DJ and producer from Borovnica, Slovenia, known for his dark and unrelenting fusion of bochka and pure industrial. His sets dive deep into the mechanical void, merging distortion and rhythm into a relentless force that consumes the dancefloor in raw intensity.',
+          'Vanch\'s sound design explores the boundaries between noise and rhythm, creating immersive sonic experiences.',
+          'His innovative approach to production has positioned him as one of the most exciting talents in the industrial techno scene.'
+        ],
       };
 
       const instagram = {
@@ -236,6 +260,11 @@
         Nazh: 'https://soundcloud.com/nazh_209',
         Vanch: 'https://soundcloud.com/vanch999',
       };
+      const tiktok = {
+        Kayn: 'https://www.tiktok.com/@kayn_musicc',
+        Kosowsky: 'https://www.tiktok.com/@kosi286',
+        Kunja: 'https://www.tiktok.com/@kunjaofficiale',
+      };
 
       document.querySelectorAll('.residents-grid .resident').forEach(card => {
         const nameEl = card.querySelector('.resident-name');
@@ -245,14 +274,36 @@
         overlay.className = 'resident-overlay';
         overlay.setAttribute('aria-hidden', 'true');
 
-        const bioText = bios[name] || name;
+        const bioSlides = bios[name] || [name];
         const ig = instagram[name] || '#';
         const sc = soundcloud[name] || '#';
+        const tk = tiktok[name];
+
+        // Build slides HTML
+        const slidesHTML = bioSlides.map((text, idx) => `
+          <div class="bio-slide ${idx === 0 ? 'active' : ''}" data-slide="${idx}">
+            <p>${text}</p>
+          </div>
+        `).join('');
+
+        // Build dots HTML
+        const dotsHTML = bioSlides.length > 1 ? `
+          <div class="bio-dots">
+            ${bioSlides.map((_, idx) => `
+              <button class="bio-dot ${idx === 0 ? 'active' : ''}" data-slide="${idx}" aria-label="Slide ${idx + 1}"></button>
+            `).join('')}
+          </div>
+        ` : '';
 
         overlay.innerHTML = `
           <div class="overlay-content">
             <h3>${name}</h3>
-            <p>${bioText}</p>
+            <div class="bio-slider">
+              <div class="bio-slides">
+                ${slidesHTML}
+              </div>
+              ${dotsHTML}
+            </div>
             <div class="resident-socials">
               <a class="resident-social-icon" href="${ig}" target="_blank" rel="noopener noreferrer" aria-label="Instagram ${name}">
                 <svg role="img" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -264,6 +315,12 @@
                   <path fill="currentColor" d="M20.771 10.671a3.474 3.474 0 0 0-1.49.327 5.8 5.8 0 0 0-5.4-4.228 5.73 5.73 0 0 0-3.317 1.09 4.9 4.9 0 0 0-2.081 3.99v6.787h12.288a3.477 3.477 0 0 0 0-6.996zM6.465 10.315a.736.736 0 0 0-.736.736v6.139a.736.736 0 0 0 1.471 0v-6.139a.736.736 0 0 0-.735-.736zm-2.206.736a.736.736 0 0 0-1.471 0v6.139a.736.736 0 1 0 1.471 0z"/>
                 </svg>
               </a>
+              ${tk ? `
+              <a class="resident-social-icon" href="${tk}" target="_blank" rel="noopener noreferrer" aria-label="TikTok ${name}">
+                <svg role="img" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+              </a>` : ''}
             </div>
           </div>
         `;
@@ -272,8 +329,101 @@
         if (!img) return;
         card.insertBefore(overlay, img.nextSibling);
 
-        overlay.querySelectorAll('.resident-social-icon').forEach(a => {
-          a.addEventListener('click', e => e.stopPropagation());
+        // Handle dot navigation
+        const dots = overlay.querySelectorAll('.bio-dot');
+        const slides = overlay.querySelectorAll('.bio-slide');
+
+        let currentIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
+        if (currentIndex < 0) currentIndex = 0;
+
+        const goTo = (i) => {
+          if (i === currentIndex || i < 0 || i >= slides.length) return;
+          slides[currentIndex].classList.remove('active');
+          dots[currentIndex]?.classList.remove('active');
+          slides[i].classList.add('active');
+          dots[i]?.classList.add('active');
+          currentIndex = i;
+        };
+
+        dots.forEach(dot => {
+          dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const slideIndex = parseInt(dot.getAttribute('data-slide'));
+            goTo(slideIndex);
+          });
+        });
+
+        // Swipe navigation (touch/pointer)
+        const slidesEl = overlay.querySelector('.bio-slides');
+        const threshold = 40; // px required to trigger a swipe
+
+        let startX = 0, startY = 0, dx = 0, dy = 0, activeDrag = false, lockedAxis = null;
+
+        const getXY = (e) => {
+          if (e.touches && e.touches[0]) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+          return { x: e.clientX, y: e.clientY };
+        };
+
+        const onPointerDown = (e) => {
+          activeDrag = true;
+          lockedAxis = null;
+          const p = getXY(e);
+          startX = p.x; startY = p.y; dx = 0; dy = 0;
+          slidesEl.setPointerCapture?.(e.pointerId);
+          e.stopPropagation();
+        };
+
+        const onPointerMove = (e) => {
+          if (!activeDrag) return;
+          const p = getXY(e);
+          dx = p.x - startX;
+          dy = p.y - startY;
+
+          // Lock to horizontal if movement is mostly horizontal
+          if (!lockedAxis && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) {
+            lockedAxis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+          }
+
+          // If horizontal gesture, prevent scrolling the page
+          if (lockedAxis === 'x') e.preventDefault();
+        };
+
+        const onPointerUp = (e) => {
+          if (!activeDrag) return;
+          activeDrag = false;
+
+          if (lockedAxis === 'x' && Math.abs(dx) > threshold) {
+            if (dx < 0) {
+              // swipe left -> next
+              goTo(Math.min(currentIndex + 1, slides.length - 1));
+            } else {
+              // swipe right -> prev
+              goTo(Math.max(currentIndex - 1, 0));
+            }
+          }
+
+          dx = dy = 0;
+          lockedAxis = null;
+          e.stopPropagation();
+        };
+
+        if (window.PointerEvent) {
+          slidesEl.addEventListener('pointerdown', onPointerDown);
+          slidesEl.addEventListener('pointermove', onPointerMove, { passive: false });
+          slidesEl.addEventListener('pointerup', onPointerUp);
+          slidesEl.addEventListener('pointercancel', onPointerUp);
+        } else {
+          // Fallback for older browsers
+          slidesEl.addEventListener('touchstart', onPointerDown, { passive: true });
+          slidesEl.addEventListener('touchmove', onPointerMove, { passive: false });
+          slidesEl.addEventListener('touchend', onPointerUp);
+          slidesEl.addEventListener('touchcancel', onPointerUp);
+        }
+
+        overlay.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const flipped = card.classList.toggle('flipped');
+          card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
         });
 
         card.setAttribute('role', 'button');
