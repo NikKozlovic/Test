@@ -180,150 +180,115 @@
     syncDropdownMode();
   </script>
   
-  
-  <main class="rules-container rules-container--compact">
-    <h1 class="rules-title">FAQ</h1>
-    <div class="rules-list">
-      <div class="rule-item">
-        <h2 class="rule-header">How can I stay updated on upcoming events?</h2>
-        <div class="rule-description">
-          <p>Follow us on Instagram for all event updates and announcements.</p>
+  <!-- New styled submission section -->
+  <main class="form-container" role="main">
+    <header class="form-header">
+      <h1>Music Submission</h1>
+      <p class="form-subtitle">Share your EP or album with Anubis Underground.</p>
+    </header>
+
+    <form class="form-card" id="submission-form" action="https://formspree.io/f/xgvpewpz" method="POST">
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="name">Your Name <span class="required">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Enter your full artist name" required>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Your Email <span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="form-field form-field--full">
+          <label for="ep">Select art type <span class="required">*</span></label>
+          <select id="ep" name="ep" required aria-describedby="ep-help">
+            <option value="">-- Choose one --</option>
+            <option value="Single">Single</option>
+            <option value="EP">EP </option>
+            <option value="Album">Album </option>
+            <option value="Podcast">Podcast </option>
+          </select>
+          <small id="ep-help" class="help-text">Tell us what you’re submitting.</small>
+        </div>
+
+        <div class="form-field form-field--full">
+          <label for="message">Your Message (optional)</label>
+          <textarea id="message" name="message" rows="5" placeholder="Share links (private SoundCloud/Dropbox), style, and anything we should know."></textarea>
         </div>
       </div>
 
-      <div class="rule-item">
-        <h2 class="rule-header">How can I get tickets for your events?</h2>
-        <div class="rule-description">
-          <p>Tickets are available on our website under the Events section or through Anubis promoters.</p>
-        </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-red">Send Submission</button>
       </div>
 
-      <div class="rule-item">
-        <h2 class="rule-header">Can I buy tickets at the door?</h2>
-        <div class="rule-description">
-          <p>Yes, if the event isn’t sold out.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">Are your events 18+ only?</h2>
-        <div class="rule-description">
-          <p>Yes.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">Do you allow re-entry once I leave the venue?</h2>
-        <div class="rule-description">
-          <p>Depends on the venue.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">Are there cloakrooms or lockers available?</h2>
-        <div class="rule-description">
-          <p>Depends on the event.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">Is there a dress code?</h2>
-        <div class="rule-description">
-          <p>No. Wear whatever makes you feel free.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">How do you handle discrimination or harassment at events?</h2>
-        <div class="rule-description">
-          <p>Anyone engaging in discrimination or harassment will be removed from the event without hesitation.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">Can I take photos or videos during the event?</h2>
-        <div class="rule-description">
-          <p>Depends on the event. You’ll be notified in the event rules.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">Do you collaborate with other collectives or artists?</h2>
-        <div class="rule-description">
-          <p>Yes. We often work with other crews and artists who share our vision.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">How can I submit my demo to Anubis Underground?</h2>
-        <div class="rule-description">
-          <p>Select Submissions under the Music category on our website.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">What genres do you accept for demo submissions?</h2>
-        <div class="rule-description">
-          <p>Hard Techno, Industrial, Schranz, Psytechno/Psy
-          <p>Hard Techno, Industrial, Schranz, Psytechno/Psytrance, Bochka, Hard Groove/Groove — mostly underground styles.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">Where are your events usually held?</h2>
-        <div class="rule-description">
-          <p>Across Slovenia. Venues vary depending on the event.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">How can I contact you?</h2>
-        <div class="rule-description">
-          <p>Email us at <a href="mailto:anubis.underground1@gmail.com">anubis.underground1@gmail.com</a> or DM us on <a href="https://www.instagram.com/anubisunderground/" target="_blank" rel="noopener noreferrer">Instagram</a>.</p>
-        </div>
-      </div>
-
-      <div class="rule-item">
-        <h2 class="rule-header">Do you accept collaborations or sponsorships?</h2>
-        <div class="rule-description">
-          <p>Yes. We’re open to working with those who align with our vision.</p>
-        </div>
-      </div>
-    </div>
+      <!-- status message area -->
+      <p class="form-status" id="form-status" aria-live="polite"></p>
+    </form>
   </main>
-
-  <script>
-    // FAQ expansion functionality
-    document.querySelectorAll('.rule-item').forEach(item => {
-      const header = item.querySelector('.rule-header');
-      const description = item.querySelector('.rule-description');
-
-      header.style.cursor = 'pointer';
-      description.style.maxHeight = '0';
-      description.style.overflow = 'hidden';
-      description.style.transition = 'max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease';
-      description.style.opacity = '0';
-
-      header.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        if (isOpen) {
-          item.classList.remove('open');
-          description.style.maxHeight = '0';
-          description.style.opacity = '0';
-          description.style.marginTop = '0';
-        } else {
-          item.classList.add('open');
-          description.style.maxHeight = description.scrollHeight + 'px';
-          description.style.opacity = '1';
-          description.style.marginTop = '15px';
-        }
-      });
-    });
-  </script>
 
   <footer class="footer">
     <p>Copyright 2025 © All rights Reserved. Design by Anubis Underground</p>
   </footer>
   
+  <script>
+    // Formspree AJAX submit + clear fields on success
+    (function () {
+      const form = document.getElementById('submission-form');
+      if (!form) return;
+
+      const statusEl = document.getElementById('form-status');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.textContent : '';
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // collect data before any reset
+        const data = new FormData(form);
+
+        // UI: disable while sending
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+        }
+        if (statusEl) statusEl.textContent = '';
+
+        try {
+          const resp = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (resp.ok) {
+            form.reset(); // clears all user-entered text/values
+            if (statusEl) {
+              statusEl.dataset.state = 'success';
+              statusEl.textContent = 'Thanks! Your submission has been sent.';
+            }
+          } else {
+            const result = await resp.json().catch(() => ({}));
+            const msg = (result && result.errors)
+              ? result.errors.map(e => e.message).join(', ')
+              : 'Could not send the form. Please try again.';
+            if (statusEl) {
+              statusEl.dataset.state = 'error';
+              statusEl.textContent = msg;
+            }
+          }
+        } catch (err) {
+          if (statusEl) {
+            statusEl.dataset.state = 'error';
+            statusEl.textContent = 'Network error. Please try again.';
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
