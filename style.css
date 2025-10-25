@@ -861,11 +861,18 @@ html {
 }
 
 .form-header h1 {
-  margin: 0 0 6px 0;
+  margin: 0 0 36px 0;  /* more space below title */
   text-align: center;
-  font-size: 34px;
-  letter-spacing: 2px;
+  font-size: 3rem;
+  letter-spacing: 4px;
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .form-header h1 {
+    font-size: 2rem;
+    margin-bottom: 24px; /* more space on mobile too */
+  }
 }
 
 .form-subtitle {
@@ -875,9 +882,37 @@ html {
   font-size: 15px;
 }
 
+/* Shaped subtitle box on submission page */
+.form-subtitle--box {
+  text-align: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-left: 4px solid #ff0000;
+  border-right: 4px solid #ff0000; /* Add this line */
+  border-radius: 12px;
+  padding: 14px 16px;
+  max-width: 900px;
+  margin: 0 auto 22px auto;
+  line-height: 1.6;
+  color: #ccc;
+  display: flex; /* Added */
+  flex-direction: column; /* Added */
+  justify-content: center; /* Added */
+  align-items: center; /* Added */
+}
+
+.form-subtitle--box p {
+  margin: 0 0 8px 0;
+}
+.form-subtitle--box p:last-child {
+  margin-bottom: 0;
+}
+
 .form-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
+  border-left: 4px solid #ff0000; /* match subtitle's red accent */
+  border-right: 4px solid #ff0000; /* match subtitle's red accent */
   border-radius: 14px;
   padding: 24px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
@@ -889,10 +924,7 @@ html {
   gap: 16px;
 }
 
-.form-field {
-  display: flex;
-  flex-direction: column;
-}
+
 
 .form-field--full {
   grid-column: 1 / -1;
@@ -996,4 +1028,9 @@ html {
 
 .form-status[data-state="error"] {
   color: #ff6b6b; /* red */
+}
+
+/* Add this CSS rule to make bold text even bolder */
+strong {
+  font-weight: 900; /* Adjust the weight as needed */
 }

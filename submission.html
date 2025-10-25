@@ -183,8 +183,13 @@
   <!-- New styled submission section -->
   <main class="form-container" role="main">
     <header class="form-header">
-      <h1>Music Submission</h1>
-      <p class="form-subtitle">Share your EP or album with Anubis Underground.</p>
+      <h1>MUSIC SUBMISSION</h1>
+      <div class="form-subtitle form-subtitle--box">
+        <p>Share your single, EP, album, or podcast with Anubis Underground.</p>
+        <p>Submit via email and include a <strong>private SoundCloud link</strong> for review.</p>
+        <p>Please note that submissions are open only to established artists with <strong>active platforms or profiles</strong>.</p>
+        <p>We’ll review your music and reply as soon as we can.</p> <!-- Moved to a new paragraph -->
+      </div>
     </header>
 
     <form class="form-card" id="submission-form" action="https://formspree.io/f/xgvpewpz" method="POST">
@@ -200,7 +205,7 @@
         </div>
 
         <div class="form-field form-field--full">
-          <label for="ep">Select art type <span class="required">*</span></label>
+          <label for="ep">Select your music project <span class="required">*</span></label>
           <select id="ep" name="ep" required aria-describedby="ep-help">
             <option value="">-- Choose one --</option>
             <option value="Single">Single</option>
