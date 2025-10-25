@@ -733,3 +733,32 @@ html {
 .resident.flipped img {
   filter: grayscale(100%);
 }
+
+/* Remove all tap highlights on mobile */
+.menu-toggle,
+.dropdown-content a,
+.menu a,
+.dropbtn,
+.dropdown {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Additional fix for all interactive elements */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Specifically target menu items in mobile view */
+@media (max-width: 700px), (max-height: 500px) and (max-width: 1000px) {
+  .menu a,
+  .dropbtn,
+  .dropdown-content a {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+  }
+}
