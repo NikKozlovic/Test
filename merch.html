@@ -128,6 +128,16 @@
       if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
     });
 
+    // Close menu when tapping/clicking outside it (mobile)
+    function outsideMenuHandler(e) {
+      if (!isMobileMenu()) return;
+      if (!menu.classList.contains('active')) return;
+      const clickedOutside = !menu.contains(e.target) && !toggle.contains(e.target);
+      if (clickedOutside) closeMenu();
+    }
+    document.addEventListener('click', outsideMenuHandler);
+    document.addEventListener('touchstart', outsideMenuHandler, { passive: true });
+
     // Mobile dropdown toggle (accordion with slide animation)
     const isMobileMenu = () =>
       window.matchMedia('(max-width: 700px), (max-height: 500px) and (max-width: 1000px)').matches;
@@ -268,6 +278,8 @@ function updateCartCount() {
 updateCartCount();
 </script>
  
+
+
 <footer class="footer">
   <p>Copyright 2025 © All rights Reserved. Design by Anubis Underground</p>
 </footer>

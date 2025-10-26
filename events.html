@@ -128,6 +128,16 @@
       });
     }
 
+        // Close menu when tapping/clicking outside it (mobile)
+    function outsideMenuHandler(e) {
+      if (!isMobileMenu()) return;
+      if (!menu.classList.contains('active')) return;
+      const clickedOutside = !menu.contains(e.target) && !toggle.contains(e.target);
+      if (clickedOutside) closeMenu();
+    }
+    document.addEventListener('click', outsideMenuHandler);
+    document.addEventListener('touchstart', outsideMenuHandler, { passive: true });
+
     // prepare dropdowns for mobile slide
     document.querySelectorAll('.dropdown .dropbtn').forEach(btn => {
       const dd = btn.closest('.dropdown');

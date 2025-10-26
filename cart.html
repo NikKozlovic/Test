@@ -119,6 +119,16 @@
       if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
     });
 
+        // Close menu when tapping/clicking outside it (mobile)
+    function outsideMenuHandler(e) {
+      if (!isMobileMenu()) return;
+      if (!menu.classList.contains('active')) return;
+      const clickedOutside = !menu.contains(e.target) && !toggle.contains(e.target);
+      if (clickedOutside) closeMenu();
+    }
+    document.addEventListener('click', outsideMenuHandler);
+    document.addEventListener('touchstart', outsideMenuHandler, { passive: true });
+
     // Mobile dropdown toggle (accordion with slide animation)
     const isMobileMenu = () =>
       window.matchMedia('(max-width: 700px), (max-height: 500px) and (max-width: 1000px)').matches;
@@ -185,10 +195,10 @@
   <div id="cart-items"></div>
   <h3 id="cart-total" style="color: white; margin-top: 30px;"></h3>
   
-  <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
-    <button onclick="window.location.href='merch.html'" style="padding: 12px 30px; background-color: #1a1a1a; color: white; border: 2px solid #ff2a2a; cursor: pointer; border-radius: 5px; font-size: 16px; font-weight: 600;">← Back to Store</button>
-    <button onclick="proceedToCheckout()" style="padding: 12px 30px; background-color: #ff2a2a; color: white; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; font-weight: 600;">Proceed to Checkout</button>
-    <button onclick="clearCart()" style="padding: 12px 30px; background-color: #333; color: white; border: 1px solid #666; cursor: pointer; border-radius: 5px; font-size: 16px;">Clear Cart</button>
+  <div class="cart-actions" style="display: flex; gap: 15px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
+    <button class="btn-back" onclick="window.location.href='merch.html'" style="padding: 12px 30px; background-color: #1a1a1a; color: white; border: 2px solid #ff2a2a; cursor: pointer; border-radius: 5px; font-size: 16px; font-weight: 600;">← Back to Store</button>
+    <button class="btn-checkout" onclick="proceedToCheckout()" style="padding: 12px 30px; background-color: #ff2a2a; color: white; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; font-weight: 600;">Proceed to Checkout</button>
+    <button class="btn-clear" onclick="clearCart()" style="padding: 12px 30px; background-color: #333; color: white; border: 1px solid #666; cursor: pointer; border-radius: 5px; font-size: 16px;">Clear Cart</button>
   </div>
 </main>
 
@@ -228,27 +238,76 @@ function removeItem(index) {
   displayCart();
 }
 
+// Two-step confirmation (no pop-up)
 function clearCart() {
-  if (confirm('Are you sure you want to clear your cart?')) {
-    localStorage.removeItem('cart');
-    displayCart();
+  const btn = document.querySelector('button[onclick="clearCart()"]');
+
+  // First click -> ask to confirm
+  if (!clearCart._confirming) {
+    clearCart._confirming = true;
+    if (btn) {
+      btn.dataset.originalText = btn.dataset.originalText || btn.textContent;
+      btn.textContent = 'Confirm clear';
+      btn.style.backgroundColor = '#b91c1c';
+      btn.classList.add('btn-pulse');
+    }
+    showToast('Click again to clear your cart', 'error');
+
+    clearTimeout(clearCart._timer);
+    clearCart._timer = setTimeout(() => {
+      // Revert if no second click in 3s
+      if (btn) {
+        btn.textContent = btn.dataset.originalText || 'Clear Cart';
+        btn.style.backgroundColor = '#333';
+        btn.classList.remove('btn-pulse');
+      }
+      clearCart._confirming = false;
+    }, 3000);
+    return;
   }
+
+  // Second click -> clear
+  localStorage.removeItem('cart');
+  displayCart();
+
+  if (btn) {
+    btn.textContent = 'Cleared ✓';
+    btn.style.backgroundColor = '#198754';
+    btn.classList.remove('btn-pulse');
+    setTimeout(() => {
+      btn.textContent = btn.dataset.originalText || 'Clear Cart';
+      btn.style.backgroundColor = '#333';
+    }, 1200);
+  }
+  clearCart._confirming = false;
+  clearTimeout(clearCart._timer);
+  showToast('Cart cleared');
 }
 
 function proceedToCheckout() {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   if (cart.length === 0) {
-    alert('Your cart is empty! Add items before checking out.');
+    showToast('Your cart is empty! Add items before checking out.', 'error');
     return;
   }
   window.location.href = 'checkout.html';
 }
 
+function showToast(message, type = 'success') {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = message;
+  t.classList.toggle('error', type === 'error');
+  t.classList.add('show');
+  clearTimeout(t._hideTimer);
+  t._hideTimer = setTimeout(() => t.classList.remove('show'), 1600);
+}
+
 displayCart();
 </script>
 
-
-
+<!-- toast container -->
+<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <footer class="footer">
     <p>Copyright 2025 © All rights Reserved. Design by Anubis Underground</p>
