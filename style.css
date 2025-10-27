@@ -1042,3 +1042,309 @@ strong {
   display: block;
   margin: 0 auto;
 }
+
+/* ===== Contact Form Section ===== */
+.contact-form-section {
+  width: 100%;
+  max-width: 900px; /* widened from 600px for a broader desktop layout */
+  margin: 48px auto 24px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.contact-form-section form {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 4px solid #ff0000;
+  border-right: 4px solid #ff0000;
+  border-radius: 14px;
+  padding: 32px 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.contact-form-section label {
+  display: block;
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.contact-form-section .required {
+  color: #ff0000;
+}
+
+.contact-form-section input[type="email"],
+.contact-form-section input[type="text"],
+.contact-form-section input[type="date"],
+.contact-form-section select,
+.contact-form-section textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: #0e0e0e;
+  color: #fff;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  outline: none;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.contact-form-section select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.contact-form-section input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.contact-form-section input[type="email"]::placeholder,
+.contact-form-section input[type="text"]::placeholder,
+.contact-form-section textarea::placeholder {
+  color: #777;
+}
+
+.contact-form-section input[type="email"]:focus,
+.contact-form-section input[type="text"]:focus,
+.contact-form-section input[type="date"]:focus,
+.contact-form-section select:focus,
+.contact-form-section textarea:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 0 3px rgba(255,0,0,0.18);
+  background: #111;
+}
+
+.contact-form-section select:focus {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff0000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.contact-form-section .checkbox-group {
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 20px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.contact-form-section .checkbox-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 200ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-form-section .checkbox-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,0,0,0.1), transparent);
+  transition: left 400ms ease;
+}
+
+.contact-form-section .checkbox-item:hover {
+  background: rgba(255,0,0,0.05);
+  border-color: rgba(255,0,0,0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255,0,0,0.15);
+}
+
+.contact-form-section .checkbox-item:hover::before {
+  left: 100%;
+}
+
+.contact-form-section .checkbox-item input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #444;
+  border-radius: 6px;
+  background: #1a1a1a;
+  margin-right: 14px;
+  margin-bottom: 0;
+  cursor: pointer;
+  position: relative;
+  transition: all 200ms ease;
+  flex-shrink: 0;
+}
+
+.contact-form-section .checkbox-item input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  border-color: #ff0000;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(255,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.contact-form-section .checkbox-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.contact-form-section .checkbox-item input[type="checkbox"]:focus {
+  box-shadow: 0 0 0 3px rgba(255,0,0,0.3);
+  border-color: #ff0000;
+}
+
+.contact-form-section .checkbox-item label {
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  color: #ddd;
+  transition: color 200ms ease;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-form-section .checkbox-item:hover label {
+  color: #fff;
+}
+
+.contact-form-section .checkbox-item input[type="checkbox"]:checked + label {
+  color: #fff;
+  font-weight: 600;
+}
+
+.contact-form-section textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: Arial, sans-serif;
+}
+
+.contact-form-section button[type="submit"] {
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 9999px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 120ms ease, box-shadow 180ms ease, background 160ms ease;
+  width: 100%;
+  text-transform: uppercase;
+  position: relative; /* needed for spinner/check */
+}
+
+.contact-form-section button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(255,0,0,0.35);
+  background: #e60000;
+}
+
+.contact-form-section button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(255,0,0,0.25);
+}
+
+/* Submit button loading spinner */
+.contact-form-section button[type="submit"].is-loading {
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.contact-form-section button[type="submit"].is-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-top-color: #fff;
+  transform: translateY(-50%);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+/* Success state */
+.contact-form-section button[type="submit"].is-success {
+  background: #16a34a; /* green */
+  box-shadow: 0 10px 26px rgba(22,163,74,0.35);
+}
+
+.contact-form-section button[type="submit"].is-success:hover {
+  background: #15803d;
+}
+
+.contact-form-section .form-success-pop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  animation: pop-in 300ms ease;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.96); opacity: 0; }
+  60% { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Optional: gently fade fields once submitted */
+.contact-form-section form.is-submitted {
+  position: relative;
+}
+
+.contact-form-section form.is-submitted .fade-after-submit {
+  opacity: 0.6;
+  transition: opacity 300ms ease;
+}
+
+@media (max-width: 700px) {
+  .contact-form-section {
+    margin: 32px auto 20px;
+    padding: 0 8px; /* Reduce side padding on mobile */
+  }
+  
+  .contact-form-section form {
+    padding: 20px 16px; /* Reduce padding inside form */
+  }
+  
+  .contact-form-section .checkbox-group {
+    grid-template-columns: 1fr; /* Stack checkboxes on mobile */
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .contact-form-section .checkbox-item {
+    padding: 14px 16px; /* Slightly larger touch targets on mobile */
+  }
+}

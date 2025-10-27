@@ -7,14 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="Media/Logo/logo.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="Media/Logo/logo.png">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-39PWVR4N25"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-39PWVR4N25');
-</script>
 </head>
 <body>
 
@@ -218,6 +210,70 @@
         <img src="Media/Residents/vanch.jpg" alt="Vanch">
         <p class="resident-name">Vanch</p>
       </div>
+    </section>
+
+    <section class="contact-form-section">
+      <h2>BOOKING FORM</h2>
+      <form
+        id="booking-form"
+        action="https://formspree.io/f/mvgvzrye"
+        method="POST"
+      >
+        <label>
+          Your name: <span class="required">*</span>
+          <input type="text" name="name" placeholder="Enter your name" required>
+        </label>
+        <label>
+          Your email: <span class="required">*</span>
+          <input type="email" name="email" placeholder="Enter your email" required>
+        </label>
+        <label>
+          Location: <span class="required">*</span>
+          <input type="text" name="location" placeholder="Enter event location" required>
+        </label>
+        <label>
+          Name of event: <span class="required">*</span>
+          <input type="text" name="event_name" placeholder="Enter event name" required>
+        </label>
+        <label>
+          Date for booking: <span class="required">*</span>
+          <input type="date" name="booking_date" required>
+        </label>
+        <label>
+          Select artist(s) to book: <span class="required">*</span>
+        </label>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="kosowsky" name="artist" value="Kosowsky">
+            <label for="kosowsky">Kosowsky</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="kunja" name="artist" value="Kunja">
+            <label for="kunja">Kunja</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="kayn" name="artist" value="Kayn">
+            <label for="kayn">Kayn</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="nazh" name="artist" value="Nazh">
+            <label for="nazh">Nazh</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="bahun" name="artist" value="Bahun">
+            <label for="bahun">Bahun</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="vanch" name="artist" value="Vanch">
+            <label for="vanch">Vanch</label>
+          </div>
+        </div>
+        <label>
+          Additional message:
+          <textarea name="message" placeholder="Any additional details or requirements..."></textarea>
+        </label>
+        <button type="submit" id="booking-submit">Send Booking Request</button>
+      </form>
     </section>
   </main>
 
@@ -460,6 +516,84 @@
         });
       });
     });
+  </script>
+  <script>
+    // Booking form: intercept submit, send via fetch, prevent redirect,
+    // show success state, clear fields after 2s, then restore button.
+    (function () {
+      const form = document.getElementById('booking-form');
+      const submitBtn = document.getElementById('booking-submit');
+      if (!form || !submitBtn) return;
+
+      const originalText = submitBtn.textContent;
+      const originalStyle = {
+        background: submitBtn.style.backgroundColor || '',
+        color: submitBtn.style.color || '',
+      };
+
+      function setButtonState(text, bg, color) {
+        submitBtn.textContent = text;
+        if (bg !== null) submitBtn.style.backgroundColor = bg;
+        if (color !== null) submitBtn.style.color = color;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // prevent double submits
+        if (submitBtn.disabled) return;
+        submitBtn.disabled = true;
+
+        // show sending state
+        setButtonState('Sending...', '#6c757d', '#fff');
+
+        const fd = new FormData(form);
+
+        try {
+          // POST to the form action (Formspree)
+          const resp = await fetch(form.action, {
+            method: form.method || 'POST',
+            body: fd,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (resp.ok) {
+            // success UI
+            setButtonState('Booking submitted', '#28a745', '#fff');
+
+            // clear fields after 2 seconds
+            setTimeout(() => {
+              // Clear inputs, textareas, checkboxes
+              form.querySelectorAll('input, textarea').forEach(inp => {
+                if (inp.type === 'checkbox' || inp.type === 'radio') inp.checked = false;
+                else if (inp.type === 'date' || inp.type === 'text' || inp.type === 'email' || inp.tagName.toLowerCase() === 'textarea') inp.value = '';
+                else if (inp.type === 'hidden') return;
+                else inp.value = '';
+              });
+
+              // restore button
+              setButtonState(originalText, originalStyle.background, originalStyle.color);
+              submitBtn.disabled = false;
+            }, 2000);
+          } else {
+            // error
+            setButtonState('Error sending', '#dc3545', '#fff');
+            setTimeout(() => {
+              setButtonState(originalText, originalStyle.background, originalStyle.color);
+              submitBtn.disabled = false;
+            }, 2000);
+          }
+        } catch (err) {
+          // network error
+          setButtonState('Network error', '#dc3545', '#fff');
+          setTimeout(() => {
+            setButtonState(originalText, originalStyle.background, originalStyle.color);
+            submitBtn.disabled = false;
+          }, 2000);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
