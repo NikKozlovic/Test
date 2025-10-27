@@ -1052,6 +1052,27 @@ strong {
   box-sizing: border-box;
 }
 
+/* Form row layout for side-by-side fields */
+.contact-form-section .form-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.contact-form-section .form-row .form-field {
+  flex: 1;
+}
+
+.contact-form-section .form-row label {
+  display: block;
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: left;
+}
+
 .contact-form-section form {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
@@ -1346,5 +1367,24 @@ strong {
   
   .contact-form-section .checkbox-item {
     padding: 14px 16px; /* Slightly larger touch targets on mobile */
+  }
+
+  /* Mobile: stack form rows vertically */
+  .contact-form-section .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Mobile: make all form fields same width */
+  .contact-form-section .form-field {
+    width: 100%;
+  }
+
+  .contact-form-section input[type="email"],
+  .contact-form-section input[type="text"],
+  .contact-form-section input[type="date"],
+  .contact-form-section select,
+  .contact-form-section textarea {
+    width: 100%;
   }
 }

@@ -219,26 +219,51 @@
         action="https://formspree.io/f/mvgvzrye"
         method="POST"
       >
-        <label>
-          Your name: <span class="required">*</span>
-          <input type="text" name="name" placeholder="Enter your name" required>
-        </label>
-        <label>
-          Your email: <span class="required">*</span>
-          <input type="email" name="email" placeholder="Enter your email" required>
-        </label>
-        <label>
-          Location: <span class="required">*</span>
-          <input type="text" name="location" placeholder="Enter event location" required>
-        </label>
-        <label>
-          Name of event: <span class="required">*</span>
-          <input type="text" name="event_name" placeholder="Enter event name" required>
-        </label>
-        <label>
-          Date for booking: <span class="required">*</span>
-          <input type="date" name="booking_date" required>
-        </label>
+        <!-- Row 1: Name and Email -->
+        <div class="form-row">
+          <div class="form-field">
+            <label>
+              Your name: <span class="required">*</span>
+              <input type="text" name="name" placeholder="Enter your name" required>
+            </label>
+          </div>
+          <div class="form-field">
+            <label>
+              Your email: <span class="required">*</span>
+              <input type="email" name="email" placeholder="Enter your email" required>
+            </label>
+          </div>
+        </div>
+
+        <!-- Row 2: Location and Event Name -->
+        <div class="form-row">
+          <div class="form-field">
+            <label>
+              Location: <span class="required">*</span>
+              <input type="text" name="location" placeholder="Enter event location" required>
+            </label>
+          </div>
+          <div class="form-field">
+            <label>
+              Name of event: <span class="required">*</span>
+              <input type="text" name="event_name" placeholder="Enter event name" required>
+            </label>
+          </div>
+        </div>
+
+        <!-- Row 3: Date (half width) -->
+        <div class="form-row">
+          <div class="form-field">
+            <label>
+              Date for booking: <span class="required">*</span>
+              <input type="date" name="booking_date" required>
+            </label>
+          </div>
+          <div class="form-field">
+            <!-- Empty div to maintain spacing -->
+          </div>
+        </div>
+
         <label>
           Select artist(s) to book: <span class="required">*</span>
         </label>
