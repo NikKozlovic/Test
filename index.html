@@ -4,9 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Anubis Underground</title>
-  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" href="Media/Logo/logo.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="Media/Logo/logo.png">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-39PWVR4N25"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-39PWVR4N25');
+</script>
 </head>
 <body>
 
@@ -36,15 +45,6 @@
           <title>TikTok</title>
           <path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
         </svg>
-      </a>
-
-      <!-- Cart icon with badge -->
-      <a class="social-icon cart-icon" href="cart.html" aria-label="Shopping Cart" style="position: relative;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-          <title>Cart</title>
-          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-        </svg>
-        <span id="cart-count" class="cart-badge">0</span>
       </a>
     </div>
 
@@ -119,7 +119,8 @@
       if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
     });
 
-    // Close menu when tapping/clicking outside it (mobile)
+
+        // Close menu when tapping/clicking outside it (mobile)
     function outsideMenuHandler(e) {
       if (!isMobileMenu()) return;
       if (!menu.classList.contains('active')) return;
@@ -128,7 +129,7 @@
     }
     document.addEventListener('click', outsideMenuHandler);
     document.addEventListener('touchstart', outsideMenuHandler, { passive: true });
-
+    
     // Mobile dropdown toggle (accordion with slide animation)
     const isMobileMenu = () =>
       window.matchMedia('(max-width: 700px), (max-height: 500px) and (max-width: 1000px)').matches;
@@ -190,90 +191,52 @@
     syncDropdownMode();
   </script>
   
-  
+  <div class="content">
+    <div class="page-header">
+      <h1>UPCOMING EVENT</h1>
+    </div>
+    
+    <!-- Event: CLEOPATRA'S CURSE -->
+    <h2 class="event-title" id="event-cleopatra-title" style="margin-top: 40px;">CLEOPATRA'S CURSE</h2>
+    <div class="event-container" aria-labelledby="event-cleopatra-title">
+      <img src="Media/Events/CLEOPATRAS/cleopatrascurse.jpg" alt="Cleopatra's Curse Event">
+    </div>
+    <div style="text-align: center; margin: 20px 0;">
+      <a href="https://www.entrio.si/event/anubis-cleopatras-curse-27981" target="_blank" rel="noopener noreferrer" class="ticket-btn">GET YOUR TICKETS</a>
+    </div>
 
+    <!-- Latest Podcast Section -->
+    <div class="page-header" style="margin-top: 60px;">
+      <h1>LATEST PODCAST</h1>
+    </div>
+    
+    <h2 class="event-title" style="margin-top: 40px;">ANUBIS PODCAST #017 - ZNITE</h2>
+    <div class="event-container">
+      <iframe width="100%" height="400" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/anubis_records/anubis-podcast-17-znite&color=%23ff0000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+    </div>
+    <div style="font-size: 10px; color: #cccccc; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100; text-align: center; margin-top: 10px;">
+      <a href="https://soundcloud.com/anubis_records" title="Anubis Records" target="_blank" style="color: #cccccc; text-decoration: none;">Anubis Records</a> · 
+      <a href="https://soundcloud.com/anubis_records/anubis-podcast-17-znite" title="Anubis Podcast #17 - Znite" target="_blank" style="color: #cccccc; text-decoration: none;">Anubis Podcast #17 - Znite</a>
+    </div>
 
-<div class="product">
-  <img src="Media\Merch\tshirt.png" alt="T-Shirt" style="max-width: 300px; width: 100%; height: auto;">
-  <h3>Cool T-Shirt</h3>
-  <p>$25</p>
-
-  <!-- Size selector (circles) -->
-  <div class="size-group" role="radiogroup" aria-label="Size">
-    <input class="size-option" type="radio" name="size-tshirt" id="size-s" value="S">
-    <label class="size-pill" for="size-s">S</label>
-
-    <input class="size-option" type="radio" name="size-tshirt" id="size-m" value="M" checked>
-    <label class="size-pill" for="size-m">M</label>
-
-    <input class="size-option" type="radio" name="size-tshirt" id="size-l" value="L">
-    <label class="size-pill" for="size-l">L</label>
+    <!-- Latest Release Section -->
+    <div class="page-header" style="margin-top: 60px;">
+      <h1>LATEST RELEASE</h1>
+    </div>
+    
+    <h2 class="event-title" style="margin-top: 40px;">ANU003 - BALROG - CUNNING MANEUVERS</h2>
+    <div class="event-container">
+      <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/anubis_records/sets/anu003-balrog-cunning-maneuvers&color=%23ff0000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+    </div>
+    <div style="font-size: 10px; color: #cccccc; line-break: anywhere; word-break: normal; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif; font-weight: 100; text-align: center; margin-top: 10px;">
+      <a href="https://soundcloud.com/anubis_records" title="Anubis Records" target="_blank" style="color: #cccccc; text-decoration: none;">Anubis Records</a> · 
+      <a href="https://soundcloud.com/anubis_records/sets/anu003-balrog-cunning-maneuvers" title="ANU003 - BALROG - CUNNING MANEUVERS" target="_blank" style="color: #cccccc; text-decoration: none;">ANU003 - BALROG - CUNNING MANEUVERS</a>
+    </div>
   </div>
-
-  <!-- Quantity selector -->
-  <div style="margin: 15px 0; display: flex; align-items: center; justify-content: center; gap: 15px;">
-    <button type="button" class="quantity-btn" onclick="changeQuantity('quantity-tshirt', -1)">-</button>
-    <span id="quantity-tshirt" style="color: #fff; font-size: 20px; font-weight: 700; min-width: 30px; text-align: center;">1</span>
-    <button type="button" class="quantity-btn" onclick="changeQuantity('quantity-tshirt', 1)">+</button>
-  </div>
-
-  <button id="add-cart-btn" onclick="addToCart('Cool T-Shirt', 25, (document.querySelector('input[name=&quot;size-tshirt&quot;]:checked')||{}).value || 'M', parseInt(document.getElementById('quantity-tshirt').textContent) || 1)" style="padding: 12px 30px; background-color: #ff2a2a; color: white; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; font-weight: 600; transition: all 0.3s ease;">Add to Cart</button>
-</div>
-
-
-<script>
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-function changeQuantity(id, delta) {
-  const quantityElement = document.getElementById(id);
-  let currentQuantity = parseInt(quantityElement.textContent) || 1;
-  let newQuantity = currentQuantity + delta;
   
-  // Keep quantity between 1 and 3
-  if (newQuantity < 1) newQuantity = 1;
-  if (newQuantity > 3) newQuantity = 3;
-  
-  quantityElement.textContent = newQuantity;
-}
-
-function addToCart(name, price, size, quantity) {
-  // Add items based on quantity
-  for (let i = 0; i < quantity; i++) {
-    cart.push({ name, price, size });
-  }
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartCount();
-  
-  // Button animation
-  const btn = document.getElementById('add-cart-btn');
-  btn.textContent = 'Added!';
-  btn.style.backgroundColor = '#00cc00';
-  btn.style.pointerEvents = 'none';
-  
-  setTimeout(() => {
-    btn.textContent = 'Add to Cart';
-    btn.style.backgroundColor = '#ff2a2a';
-    btn.style.pointerEvents = 'auto';
-  }, 1000);
-}
-
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const cartBadge = document.getElementById('cart-count');
-  if (cartBadge) {
-    cartBadge.textContent = cart.length;
-  }
-}
-
-// Update cart count on page load
-updateCartCount();
-</script>
- 
-
-
-<footer class="footer">
-  <p>Copyright 2025 © All rights Reserved. Design by Anubis Underground</p>
-</footer>
+  <footer class="footer">
+    <p>Copyright 2025 © All rights Reserved. Design by Anubis Underground</p>
+  </footer>
   
 </body>
 </html>

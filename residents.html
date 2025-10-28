@@ -11,7 +11,7 @@
 <body>
 
   <div class="navbar">
-    <a class="logo" href="Main.html">
+    <a class="logo" href="index.html">
       <!-- fixed slashes -->
       <img src="Media/Logo/logo.png" alt="Logo">
     </a>
@@ -57,7 +57,7 @@
       <a href="residents.html">RESIDENTS</a>
 
       <!-- center logo for desktop only -->
-      <a class="logo-inline" href="Main.html">
+      <a class="logo-inline" href="index.html">
         <img class="logo-img default" src="Media/Logo/logo.png" alt="Logo">
         <img class="logo-img hover" src="Media/Logo/logored.png" alt="Logo (red)">
       </a>
@@ -235,32 +235,35 @@
           </div>
         </div>
 
-        <!-- Row 2: Location and Event Name -->
+        <!-- Row 2: Event Name and Location -->
         <div class="form-row">
-          <div class="form-field">
-            <label>
-              Location: <span class="required">*</span>
-              <input type="text" name="location" placeholder="Enter event location" required>
-            </label>
-          </div>
           <div class="form-field">
             <label>
               Name of event: <span class="required">*</span>
               <input type="text" name="event_name" placeholder="Enter event name" required>
             </label>
           </div>
+          <div class="form-field">
+            <label>
+              Location: <span class="required">*</span>
+              <input type="text" name="location" placeholder="Enter event location" required>
+            </label>
+          </div>
         </div>
 
-        <!-- Row 3: Date (half width) -->
+        <!-- Row 3: Country and Date -->
         <div class="form-row">
+          <div class="form-field">
+            <label>
+              Country: <span class="required">*</span>
+              <input type="text" name="country" placeholder="Enter country" required>
+            </label>
+          </div>
           <div class="form-field">
             <label>
               Date for booking: <span class="required">*</span>
               <input type="date" name="booking_date" required>
             </label>
-          </div>
-          <div class="form-field">
-            <!-- Empty div to maintain spacing -->
           </div>
         </div>
 
