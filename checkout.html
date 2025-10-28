@@ -12,7 +12,7 @@
 <body>
 
   <div class="navbar">
-    <a class="logo" href="index.html">
+    <a class="logo" href="home.html">
       <img src="Media\Logo\logo.png" alt="Logo">
     </a>
 
@@ -59,7 +59,7 @@
       <a href="residents.html">RESIDENTS</a>
 
       <!-- center logo for desktop only -->
-      <a class="logo-inline" href="index.html">
+      <a class="logo-inline" href="home.html">
         <img class="logo-img default" src="Media/Logo/logo.png" alt="Logo">
         <img class="logo-img hover" src="Media/Logo/logored.png" alt="Logo (red)">
       </a>
@@ -383,7 +383,7 @@
                 
                 // Redirect to thank you page after 3 seconds
                 setTimeout(() => {
-                  window.location.href = 'index.html';
+                  window.location.href = 'home.html';
                 }, 3000);
               } else {
                 showNotification('Payment was successful, but there was an issue saving your order. Please contact us with your transaction ID: ' + details.id, 'error');
